@@ -1,0 +1,6 @@
+<div>
+  <p><%= image_tag toot.user.avatar.url, height: 20 %></p>
+  <p>@<%= toot.user.username %></p>
+  <p><%= time_ago_in_words(toot.created_at) %> ago</p>
+  <p><%= toot.message %></p>
+</div>

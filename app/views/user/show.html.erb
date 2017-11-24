@@ -1,0 +1,24 @@
+<h1>@<%= @user.username %></h1>
+<% unless @user == current_user %>
+  <% if current_user.following.include?(@user.id.to_s) %>
+    <%= link_to "Unfollow", unfollow_user_url(id: @user.id), class: "btn btn-danger" %>
+  <% else %>
+    <%= link_to "Follow", follow_user_url(id: @user.id), class: "btn btn-primary" %>
+  <% end %>
+<% end %>
+
+<% if @user.avatar.url %>
+  <%= image_tag @user.avatar.url, width: 200 %>
+<% end  %>
+
+<p><%= @user.name %></p>
+<p><%= @user.city %></p>, <p><%= @user.state %></p>
+<p><%= @user.email %></p>
+<p><%= @user.bio %></p>
+
+<br>
+<br>
+
+<% @user.toots.each do |toot|  %>
+<%= render 'shared/toot', toot: toot %>
+<%end %>
